@@ -1,174 +1,97 @@
-🎬 AI Meeting Assistant
+# 🎬 AI Meeting Assistant
 
-Turn long meetings into clear, searchable, and actionable knowledge.
+> **Turn long meetings into clear, searchable, and actionable knowledge.**
 
-An AI-powered meeting assistant that converts a YouTube URL or local audio/video into a structured meeting analysis using Whisper + Mistral + LangChain + ChromaDB + RAG.
+An AI-powered meeting assistant that converts **YouTube videos or local audio/video files** into structured meeting insights and allows users to ask questions about the meeting using **RAG**.
 
-✨ What It Does
+---
 
-🎥 Input meeting video/audio→ 🎧 Extract & process audio→ ✂️ Split audio into chunks→ 🎙️ Whisper transcription→ 🧠 Mistral analysis→ 🏷️ Title + 📝 Summary→ 📌 Action Items + 🔑 Decisions + ❓ Open Questions→ 🗄️ ChromaDB vector store→ 🔎 RAG retrieval→ 💬 Ask questions about the meeting
+## ✨ Features
 
-🏗️ Project Flowchart
+- 🎥 YouTube URL / Local Audio-Video Input
+- 🎧 Audio Extraction & Processing
+- ✂️ Long Audio Chunking
+- 🎙️ Speech-to-Text using Whisper
+- 🏷️ Automatic Meeting Title
+- 📝 AI Meeting Summary
+- 📌 Action Item Extraction
+- 🔑 Key Decision Extraction
+- ❓ Open Question Extraction
+- 🗄️ ChromaDB Vector Database
+- 🔎 Semantic Search with RAG
+- 💬 Ask Questions About the Meeting
+- 🖥️ Streamlit UI
 
-              🎬 AI MEETING ASSISTANT
-                       │
-                       ▼
-        ┌─────────────────────────────┐
-        │ 🎥 YouTube / Local File    │
-        └──────────────┬──────────────┘
-                       ▼
-        ┌─────────────────────────────┐
-        │ 🎧 Audio Processing         │
-        │ yt-dlp + FFmpeg + Pydub    │
-        └──────────────┬──────────────┘
-                       ▼
-        ┌─────────────────────────────┐
-        │ ✂️ Audio Chunking           │
-        └──────────────┬──────────────┘
-                       ▼
-        ┌─────────────────────────────┐
-        │ 🎙️ Whisper STT              │
-        │ Speech → Transcript         │
-        └──────────────┬──────────────┘
-                       ▼
-        ┌─────────────────────────────┐
-        │ 🧠 Mistral + LangChain      │
-        └──────────────┬──────────────┘
-                       │
-          ┌────────────┼────────────┐
-          ▼            ▼            ▼
-       🏷️ Title    📝 Summary   📌 Actions
-                       │
-                ┌──────┴──────┐
-                ▼             ▼
-          🔑 Decisions    ❓ Questions
-                │             │
-                └──────┬──────┘
-                       ▼
-        ┌─────────────────────────────┐
-        │ 🗄️ ChromaDB + Embeddings   │
-        └──────────────┬──────────────┘
-                       ▼
-                🔎 RAG Retriever
-                       │
-                       ▼
-                 🤖 Mistral LLM
-                       │
-                       ▼
-                  💬 Meeting Q&A
+---
+<img width="1355" height="624" alt="image" src="https://github.com/user-attachments/assets/59fce30d-44fa-4604-9f66-157eb883a410" />
 
-🧩 Project Structure
 
-Video Agent/
-│
-├── main.py                  # Main pipeline + CLI
-├── app.py                   # Streamlit UI
-├── requirements.txt
-├── .env
-│
-├── core/
-│   ├── transcriber.py       # Whisper transcription
-│   ├── summarizer.py        # Title + summary
-│   ├── extractor.py         # Actions, decisions, questions
-│   ├── vector_store.py      # Embeddings + ChromaDB
-│   └── rag_engine.py        # RAG question answering
-│
-├── utils/
-│   └── audio_processor.py   # Download, convert, chunk audio
-│
-├── downloades/              # Processed audio
-└── vector_db/               # ChromaDB storage
+<img width="1360" height="658" alt="image" src="https://github.com/user-attachments/assets/7c595fd3-7bf6-4c2e-aec6-4caad1cf1838" />
 
-🛠️ Tech Stack
 
-Layer
+<img width="1363" height="670" alt="image" src="https://github.com/user-attachments/assets/a5aba99b-8d6c-420c-bce6-0829becc0e48" />
 
-Technology
+<img width="1362" height="663" alt="image" src="https://github.com/user-attachments/assets/4ac43ad8-cde0-41fb-b006-b508392f887f" />
 
-Language
 
-Python
+## 🏗️ System Architecture
 
-Audio
-
-FFmpeg, Pydub, yt-dlp
-
-Speech-to-Text
-
-OpenAI Whisper
-
-LLM
-
-Mistral Small
-
-Framework
-
-LangChain / LCEL
-
-Embeddings
-
-HuggingFace Sentence Transformers
-
-Vector DB
-
-ChromaDB
-
-UI
-
-Streamlit
-
-🧠 RAG in This Project
-
-Meeting Transcript
-       ↓
-Text Chunks
-       ↓
-HuggingFace Embeddings
-       ↓
-ChromaDB
-       ↓
-Similarity Search
-       ↓
-Relevant Transcript
-       ↓
-Mistral
-       ↓
-💬 Answer
-
-The assistant answers questions using the relevant meeting transcript content instead of manually searching the complete transcript.
-
-▶️ Run
-
-.venv\Scripts\Activate.ps1
-python main.py
-
-For Streamlit:
-
-streamlit run app.py
-
-🔐 .env
-
-MISTRAL_API_KEY="your_mistral_api_key"
-WHISPER_MODEL="small"
-
-Keep your API key private and do not commit .env to GitHub.
-
-🎯 Example Questions
-
-What were the main topics discussed?
-
-What is an AI Agent?
-
-What is the difference between AI Agents and Large Reasoning Models?
-
-What were the key decisions?
-
-What action items were mentioned?
-
-How is RAG used in the meeting?
-
-🚀 Project Vision
-
-🎙️ Transcribe → 🧠 Understand → 📌 Extract → 🔎 Retrieve → 💬 Ask
-
-Built as an AI/ML project demonstrating speech-to-text, LLM orchestration, vector databases, and RAG-based question answering.
+```text
+                 🎬 AI MEETING ASSISTANT
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │ 🎥 YouTube / Local    │
+              │     Audio / Video     │
+              └───────────┬───────────┘
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │ 🎧 Audio Processing   │
+              │ yt-dlp + FFmpeg       │
+              │ + Pydub               │
+              └───────────┬───────────┘
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │ ✂️ Audio Chunking     │
+              └───────────┬───────────┘
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │ 🎙️ Whisper            │
+              │ Speech → Text         │
+              └───────────┬───────────┘
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │ 🧠 Mistral +          │
+              │    LangChain          │
+              └───────────┬───────────┘
+                          │
+            ┌─────────────┼─────────────┐
+            │             │             │
+            ▼             ▼             ▼
+        🏷️ Title      📝 Summary     📌 Actions
+            │             │             │
+            └─────────────┼─────────────┘
+                          │
+                    ┌─────┴─────┐
+                    ▼           ▼
+              🔑 Decisions   ❓ Questions
+                    │           │
+                    └─────┬─────┘
+                          ▼
+              ┌───────────────────────┐
+              │ 🗄️ ChromaDB          │
+              │ Vector Knowledge Base │
+              └───────────┬───────────┘
+                          │
+                          ▼
+                  🔎 RAG Retriever
+                          │
+                          ▼
+                  🤖 Mistral LLM
+                          │
+                          ▼
+                    💬 Meeting Q&A
